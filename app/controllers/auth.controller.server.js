@@ -11,7 +11,7 @@ import { UserDisplayName } from '../utils/index.js';
 
 export function DisplayLoginPage(req, res, next){
     if(!req.user){ 
-        return res.render('index', {title: 'Login', page: 'login', messages: req.flash('loginMessage')})
+        return res.render('index', {title: 'Login', page: 'login', messages: req.flash('loginMessage'), displayName: {}})
     }
 
     return res.redirect('/movie-list');
@@ -19,7 +19,7 @@ export function DisplayLoginPage(req, res, next){
 
 export function DisplayRegisterPage(req, res, next){
     if(!req.user){ 
-        return res.render('index', {title: 'Register', page: 'register', messages: req.flash('registerMessage')})
+        return res.render('index', {title: 'Register', page: 'register', messages: req.flash('registerMessage'), displayName: {}})
     }
 
     return res.redirect('/movie-list');
