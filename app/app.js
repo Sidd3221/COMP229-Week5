@@ -54,15 +54,32 @@ app.use(express.urlencoded({ extended: false}));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname,'/client')));
 app.use(express.static(path.join(__dirname,'../public')));
+
+//Auth Step 4 - Setup Express Session
 app.use(session({
     secret: Secret,
     saveUninitialized: false, 
     resave: false
 }));
 
+// Auth Step 5 - Setup flash
+app.use(flash());
+
+// Auth Step 6 - initialize passport and session
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Auth Step 7 - IMplementing the Authentication Strategy
+passport.use(User.createStrategy());
+
+// Auth Step 8 - setup serialization and deserialization
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 // Use Routes
 app.use('/', indexRouter);
 app.use('/', movieRouter);
+app.use('/',authRouter);
 
 
 export default app;
