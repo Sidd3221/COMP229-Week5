@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { DisplayLoginPage, DisplayRegisterPage, ProcessRegisterPage, ProcessLogoutPage, ProcessLoginPage } from '../controllers/auth.controller.server.js';
 const router = Router();
 
 // Display Login page
@@ -7,7 +8,7 @@ router.post('/login', ProcessLoginPage);
 
 //Display registration page
 router.get('/register', DisplayRegisterPage);
-router.post('/register', ProcessRegistrationPage);
+router.post('/register', ProcessRegisterPage);
 
 //Process log out page
 
