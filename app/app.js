@@ -9,6 +9,17 @@ import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+// Auth Step 1 - import modules 
+import passport from 'passport';
+import passportLocal from 'passport-local';
+import flash from 'connect-flash';
+
+// Auth Step 2 - define our auth Strategy
+let localStrategy = passportLocal.Strategy;
+
+//Auth Step 3 - Import User models 
+import User from './models/user.js';
+
 // Import Mongoose Module
 import mongoose from 'mongoose';
 
@@ -18,6 +29,7 @@ import { MongoURI, Secret } from '../config/config.js';
 // Import Routes
 import indexRouter from './routes/index.route.server.js'
 import movieRouter from './routes/movies.route.server.js';
+import authRouter from './routes/auth.route.server.js'
 
 // Instantiate Express Application
 const app = express();
